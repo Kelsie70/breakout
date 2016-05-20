@@ -32,11 +32,10 @@ public class Paddle {
 		Iterator<Ball> bi = ball_array.iterator();
 		while (bi.hasNext()) {
 			Ball b = bi.next();
-			if (rekt.getBoundsInParent().intersects(
-					b.getBall().getBoundsInParent())) {
+			if (rekt.getBoundsInParent().intersects(b.getBall().getBoundsInParent())) {
 				b.invertYDir();
 			}
-			
+
 		}
 	}
 
@@ -49,17 +48,15 @@ public class Paddle {
 		if (TestGame.im.right) {
 			dx++;
 		}
-		
+
 		x += dx * speed;
-		
-		if(x <= 0){
+
+		if (x <= 0) {
 			x = 0;
 		}
-		if(x >= TestGame.window_width - 150){
+		if (x >= TestGame.window_width - 150) {
 			x = TestGame.window_width - 150;
 		}
-
-		
 
 		rekt.relocate(x, TestGame.window_height - 50);
 

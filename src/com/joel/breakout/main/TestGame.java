@@ -27,27 +27,36 @@ public class TestGame extends Game {
 			setTranslateY(20);
 			setFill(Color.YELLOWGREEN);
 		}
-	}; 
+	};
 
 	public static ArrayList<Ball> ball_array = new ArrayList<Ball>();
 	private Ball b1 = new Ball(20, 30, 7);
 	private Ball b2 = new Ball(50, 70, 7);
-	public Iterator<Ball> bi = ball_array.iterator();
+	public static Iterator<Ball> bi = ball_array.iterator();
 
 	public Paddle paddle = new Paddle(window_width / 2);
 	public static InputManager im = new InputManager();
-
+	public Level level;
+	public int numLevel = 1;
+	
 	public TestGame(Stage stage) {
 		super(stage, "TestGame", 60, window_width, window_height);
-		getSceneNodes().getChildren().addAll(bg, text,
-				paddle.getPaddle());
+		getSceneNodes().getChildren().addAll(bg, text, paddle.getPaddle());
 		ball_array.add(b1);
 		ball_array.add(b2);
 		bi = ball_array.iterator();
 		while (bi.hasNext()) {
 			getSceneNodes().getChildren().addAll(bi.next().getBall());
 		}
+		level = new Level(10, 5);
+		level.init();
 		
+		for(int i = 0; i < level.bricks.length; i++){
+			for(int k = 0; k < level.bricks[i].length; k++){
+				getSceneNodes().getChildren().addAll(level.bricks[i][k].getBlock());
+			}
+		}
+
 	}
 
 	@Override
@@ -59,6 +68,7 @@ public class TestGame extends Game {
 			bi.next().update(game, gameTime);
 		}
 		paddle.update(game, gameTime);
+		
 	}
 
 	public static ArrayList<Ball> getBall_array() {
