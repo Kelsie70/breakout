@@ -27,7 +27,7 @@ public class TestGame extends Game {
 			setTranslateY(20);
 			setFill(Color.YELLOWGREEN);
 		}
-	};
+	}; 
 
 	public static ArrayList<Ball> ball_array = new ArrayList<Ball>();
 	private Ball b1 = new Ball(20, 30, 7);
