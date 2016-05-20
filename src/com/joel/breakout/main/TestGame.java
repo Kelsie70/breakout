@@ -1,5 +1,8 @@
 package com.joel.breakout.main;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -26,26 +29,39 @@ public class TestGame extends Game {
 		}
 	};
 
-	public static Ball ball = new Ball(20, 30, 7);
-	public Paddle paddle = new Paddle(window_width /2);
+	public static ArrayList<Ball> ball_array = new ArrayList<Ball>();
+	private Ball b1 = new Ball(20, 30, 7);
+	private Ball b2 = new Ball(50, 70, 7);
+	public Iterator<Ball> bi = ball_array.iterator();
+
+	public Paddle paddle = new Paddle(window_width / 2);
 	public static InputManager im = new InputManager();
 
 	public TestGame(Stage stage) {
 		super(stage, "TestGame", 60, window_width, window_height);
-		getSceneNodes().getChildren().addAll(bg, text, ball.getBall(), paddle.getPaddle());
-
+		getSceneNodes().getChildren().addAll(bg, text,
+				paddle.getPaddle());
+		ball_array.add(b1);
+		ball_array.add(b2);
+		bi = ball_array.iterator();
+		while (bi.hasNext()) {
+			getSceneNodes().getChildren().addAll(bi.next().getBall());
+		}
+		
 	}
 
 	@Override
 	public void update(Game game, GameTime gameTime) {
-		text.setText("Hello " + gameTime.getTotalGameTime() + " || " + ball.getBall().getTranslateX() + ", " + ball.getBall().getTranslateY());
+		text.setText("Hello " + gameTime.getTotalGameTime());
 		im.update(game, gameTime);
-		ball.update(game, gameTime);
+		bi = ball_array.iterator();
+		while (bi.hasNext()) {
+			bi.next().update(game, gameTime);
+		}
 		paddle.update(game, gameTime);
 	}
 
-	
-	public static Ball getBall(){
-		return ball;
+	public static ArrayList<Ball> getBall_array() {
+		return ball_array;
 	}
 }
