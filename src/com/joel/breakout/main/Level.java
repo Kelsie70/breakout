@@ -10,14 +10,14 @@ public class Level {
 
 	int xScale = 60, yScale = 30;
 	
-	public static int XOffset = 15;
-	public static int YOffset = 15;
+	public static int XOffset = 25;
+	public static int YOffset = 25;
 	
-	public Level (int rows, int cols)
+	public Level (int cols, int rows)
 	{
 		this.rows = rows;
 		this.cols = cols;
-		bricks = new Brick[rows][cols];
+		bricks = new Brick[cols][rows];
 	}
 	
 	public void init(){
@@ -30,9 +30,9 @@ public class Level {
 		
 	}
 	
-	private void scale(){
-		xScale = ((TestGame.window_width / cols) - 50) / 3 * 2;
-		yScale = TestGame.window_height / rows / 2;
+	public void scale(){
+		xScale = (TestGame.window_width - 50) / cols;
+		yScale = TestGame.window_height / rows / 6;
 
 	}
 }

@@ -30,8 +30,8 @@ public class TestGame extends Game {
 	};
 
 	public static ArrayList<Ball> ball_array = new ArrayList<Ball>();
-	private Ball b1 = new Ball(20, 30, 7);
-	private Ball b2 = new Ball(50, 70, 7);
+	private Ball b1 = new Ball(20, 200, 7);
+	private Ball b2 = new Ball(50, 250, 7);
 	public static Iterator<Ball> bi = ball_array.iterator();
 
 	public Paddle paddle = new Paddle(window_width / 2);
@@ -48,7 +48,7 @@ public class TestGame extends Game {
 		while (bi.hasNext()) {
 			getSceneNodes().getChildren().addAll(bi.next().getBall());
 		}
-		level = new Level(10, 5);
+		level = new Level(15, 5);
 		level.init();
 		
 		for(int i = 0; i < level.bricks.length; i++){
@@ -61,13 +61,21 @@ public class TestGame extends Game {
 
 	@Override
 	public void update(Game game, GameTime gameTime) {
-		text.setText("Hello " + gameTime.getTotalGameTime());
+		text.setText("Hello " + gameTime.getTotalGameTime() + " ... " + level.xScale);
 		im.update(game, gameTime);
 		bi = ball_array.iterator();
 		while (bi.hasNext()) {
 			bi.next().update(game, gameTime);
 		}
 		paddle.update(game, gameTime);
+		
+		for(int i = 0; i < level.bricks.length; i++){
+			for(int k = 0; k < level.bricks[i].length; k++){
+				if(level.bricks[i][k].update(game, gameTime)){
+					game.getSceneNodes().getChildren().remove(level.bricks[i][k].getBlock());
+				}
+			}
+		}
 		
 	}
 

@@ -12,11 +12,11 @@ import com.michaelcotterell.game.GameTime;
 public class Paddle {
 
 	Rectangle rekt;
-	int x;
+	int x, width = 150;
 	int speed = 3;
 
 	public Paddle(int x) {
-		rekt = new Rectangle(x, TestGame.window_height - 50, 150, 10) {
+		rekt = new Rectangle(x, TestGame.window_height - 50, width, 10) {
 			{
 				setFill(Color.RED);
 			}
@@ -34,6 +34,11 @@ public class Paddle {
 			Ball b = bi.next();
 			if (rekt.getBoundsInParent().intersects(b.getBall().getBoundsInParent())) {
 				b.invertYDir();
+				if(b.x <= x + (width / 3)){
+					b.xdir = -1;
+				} else if(b.x >= x + (width * 2 / 3)){
+					b.xdir = 1;
+				}
 			}
 
 		}

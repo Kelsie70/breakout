@@ -10,7 +10,7 @@ public class Ball {
 
 	
 	private Circle circle;
-	private int x, y, xdir, ydir, rad;
+	public int x, y, xdir, ydir, rad;
 	private double speed = 2;
 	
 	public Ball(int xx, int yy, int rad){
@@ -46,6 +46,10 @@ public class Ball {
 	
 	public void invertYDir(){
 		ydir *= -1;
+	}
+
+	public void invertXDir() {
+		xdir *= -1;
 	}
 	
 }
