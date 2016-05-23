@@ -24,7 +24,7 @@ public class Level {
 		scale();
 		for(int i = 0; i < bricks.length; i++){
 			for(int k = 0; k < bricks[i].length; k++){
-				bricks[i][k] = new Brick(1, Color.BISQUE, new Powerup(), i, k, xScale, yScale);
+				bricks[i][k] = new Brick(1, Color.BISQUE, i, k, xScale, yScale);
 			}
 		}
 		

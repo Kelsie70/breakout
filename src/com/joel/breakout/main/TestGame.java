@@ -31,7 +31,7 @@ public class TestGame extends Game {
 
 	public static ArrayList<Ball> ball_array = new ArrayList<Ball>();
 	private Ball b1 = new Ball(20, 200, 7);
-	private Ball b2 = new Ball(50, 250, 7);
+	//private Ball b2 = new Ball(50, 250, 7);
 	public static Iterator<Ball> bi = ball_array.iterator();
 
 	public Paddle paddle = new Paddle(window_width / 2);
@@ -43,7 +43,7 @@ public class TestGame extends Game {
 		super(stage, "TestGame", 60, window_width, window_height);
 		getSceneNodes().getChildren().addAll(bg, text, paddle.getPaddle());
 		ball_array.add(b1);
-		ball_array.add(b2);
+		//ball_array.add(b2);
 		bi = ball_array.iterator();
 		while (bi.hasNext()) {
 			getSceneNodes().getChildren().addAll(bi.next().getBall());

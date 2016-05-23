@@ -10,8 +10,8 @@ public class Ball {
 
 	
 	private Circle circle;
-	public int x, y, xdir, ydir, rad;
-	private double speed = 2;
+	public int xdir, ydir, rad;
+	public double x, y, speed = 1.5;
 	
 	public Ball(int xx, int yy, int rad){
 		 circle = new Circle(xx,yy,rad,Color.AQUA);
@@ -27,8 +27,6 @@ public class Ball {
 		x += (xdir * speed);
 		y += (ydir * speed);
 		
-		//circle.setTranslateX(circle.getTranslateX() + (xdir * speed));
-		//circle.setTranslateY(circle.getTranslateY() + (ydir * speed));
 		circle.relocate(x, y);
 		
 		collision();

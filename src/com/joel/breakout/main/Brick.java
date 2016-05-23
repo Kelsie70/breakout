@@ -21,10 +21,9 @@ public class Brick {
 
 	boolean isDead = false;
 
-	public Brick(int health, Color color, Powerup pu, int xx, int yy, int xscale, int yscale) {
+	public Brick(int health, Color color, int xx, int yy, int xscale, int yscale) {
 		this.health = health;
 		this.color = color;
-		this.pu = pu;
 
 		x = (xx * xscale) + Level.XOffset;
 		y = (yy * yscale) + Level.YOffset;
@@ -37,6 +36,11 @@ public class Brick {
 				setFill(color);
 			}
 		};
+		
+		//percent chance to have a power up
+		//generate powerup here and pass x and y coords
+		//10% chance of power up, 90% to be NULL
+		//if power up -> choose which powerup
 	}
 
 	public Rectangle getBlock() {
@@ -48,13 +52,14 @@ public class Brick {
 		for (int i = 0; i < balls.size(); i++) {
 			Ball b = balls.get(i);
 			if(b.getBall().getBoundsInParent().intersects(block.getBoundsInParent())){
-				health--;
-				if(b.y < y || b.y > y + height){
+				if(b.x <= x && b.x >= x + width){
+					b.invertXDir();
+				} else 
+				if(b.y >= y || b.y <= y + height){
 					b.invertYDir();
 				}
-				if(b.x < x && b.x > x + width){
-					b.invertXDir();
-				}
+				
+				health--;
 			}
 			
 			if(health == 0){
