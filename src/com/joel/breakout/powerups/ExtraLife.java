@@ -1,13 +1,15 @@
 package com.joel.breakout.powerups;
 
+import javafx.scene.paint.Color;
+
 import com.joel.breakout.main.Powerup;
 import com.michaelcotterell.game.Game;
 import com.michaelcotterell.game.GameTime;
 
 public class ExtraLife extends Powerup {
 
-	public ExtraLife(int x, int y) {
-		super(x, y);
+	public ExtraLife(int x, int y, int width, int height) {
+		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,6 +30,12 @@ public class ExtraLife extends Powerup {
 		return false;
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public Color getColor(){
+		color = Color.GREEN;
+		return color;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.joel.breakout.main;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import com.michaelcotterell.game.Game;
@@ -12,17 +13,31 @@ public class Powerup {
 	public boolean isFalling = false, isActive = false;
 	public Rectangle powerup;
 	public Rectangle block;
+	public Color color = Color.RED;
 	
-	
-	public Powerup(int x, int y){
-		
+	public Powerup(int x, int y, int width, int height){
+		this.x = x;
+		this.y = y;
+		powerup = new Rectangle(x+(width/2), y+(height/2), 10, 10){{
+			setFill(getColor());
+			}};
 	}
 	public void update(Game game, GameTime gameTime) {
 	}
 	public void activate() {
 	}
 	public boolean collision() {
-		return false;
+		if (TestGame.paddle.getPaddle().getBoundsInParent().intersects(powerup.getBoundsInParent())) 
+			return true;
+		else
+			return false;
+	}
+	public Color getColor(){
+		return color;
+	}
+	
+	public Rectangle getPowerUp(){
+		return powerup;
 	}
 		
 }

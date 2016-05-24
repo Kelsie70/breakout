@@ -1,13 +1,15 @@
 package com.joel.breakout.powerups;
 
+import javafx.scene.paint.Color;
+
 import com.joel.breakout.main.Powerup;
 import com.michaelcotterell.game.Game;
 import com.michaelcotterell.game.GameTime;
 
 public class LargePaddle extends Powerup {
 
-	public LargePaddle(int x, int y) {
-		super(x, y);
+	public LargePaddle(int x, int y, int width, int height) {
+		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,4 +32,9 @@ public class LargePaddle extends Powerup {
 
 	}
 
+	@Override
+	public Color getColor(){
+		color = Color.PURPLE;
+		return color;
+	}
 }

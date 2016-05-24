@@ -40,7 +40,6 @@ public class Paddle {
 					b.xdir = 1;
 				}
 			}
-
 		}
 	}
 

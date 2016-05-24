@@ -2,6 +2,7 @@ package com.joel.breakout.main;
 
 import java.util.ArrayList;
 
+import com.joel.breakout.powerups.ExtraBall;
 import com.michaelcotterell.game.Game;
 import com.michaelcotterell.game.GameTime;
 
@@ -20,6 +21,7 @@ public class Brick {
 	int x, y;
 
 	boolean isDead = false;
+	boolean dropNeeded = false;
 
 	public Brick(int health, Color color, int xx, int yy, int xscale, int yscale) {
 		this.health = health;
@@ -37,6 +39,7 @@ public class Brick {
 			}
 		};
 		
+		pu = new ExtraBall(x, y, width, height);
 		//percent chance to have a power up
 		//generate powerup here and pass x and y coords
 		//10% chance of power up, 90% to be NULL
@@ -48,7 +51,10 @@ public class Brick {
 	}
 
 	public boolean collision(ArrayList<Ball> balls) {
-		if(isDead) return false;
+		if(isDead) {
+			dropNeeded = false;
+			return false;
+		}
 		for (int i = 0; i < balls.size(); i++) {
 			Ball b = balls.get(i);
 			if(b.getBall().getBoundsInParent().intersects(block.getBoundsInParent())){
@@ -64,6 +70,9 @@ public class Brick {
 			
 			if(health == 0){
 				isDead = true;
+				dropNeeded = true;
+				pu.activate();
+				TestGame.powerUps.add(pu);
 			}
 		}
 		return isDead;

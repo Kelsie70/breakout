@@ -1,13 +1,15 @@
 package com.joel.breakout.powerups;
 
+import javafx.scene.paint.Color;
+
 import com.joel.breakout.main.Powerup;
 import com.michaelcotterell.game.Game;
 import com.michaelcotterell.game.GameTime;
 
 public class SlowBall extends Powerup {
 
-	public SlowBall(int x, int y) {
-		super(x, y);
+	public SlowBall(int x, int y, int width, int height) {
+		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,6 +30,12 @@ public class SlowBall extends Powerup {
 		return false;
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public Color getColor(){
+		color = Color.PINK;
+		return color;
 	}
 
 }

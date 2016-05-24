@@ -1,13 +1,15 @@
 package com.joel.breakout.powerups;
 
+import javafx.scene.paint.Color;
+
 import com.joel.breakout.main.Powerup;
 import com.michaelcotterell.game.Game;
 import com.michaelcotterell.game.GameTime;
 
 public class FastBall extends Powerup {
 
-	public FastBall(int x, int y) {
-		super(x, y);
+	public FastBall(int x, int y, int width, int height) {
+		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,4 +32,9 @@ public class FastBall extends Powerup {
 
 	}
 
+	@Override
+	public Color getColor(){
+		color = Color.ORANGE;
+		return color;
+	}
 }

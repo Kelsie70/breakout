@@ -1,5 +1,6 @@
 package com.joel.breakout.powerups;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import com.joel.breakout.main.Ball;
@@ -11,8 +12,8 @@ public class ExtraBall extends Powerup {
 
 	Ball b1;
 	
-	public ExtraBall(int x, int y){
-		super(x, y);
+	public ExtraBall(int x, int y, int width, int height){
+		super(x, y, width, height);
 		powerup = new Rectangle(x, y, 20, 20);
 	}
 	
@@ -24,6 +25,8 @@ public class ExtraBall extends Powerup {
 		
 		if(collision()){
 			isActive = true;
+			game.getSceneNodes().getChildren().addAll(b1.getBall());
+			game.getSceneNodes().getChildren().remove(powerup);
 		}
 		
 		if(isActive){
@@ -40,6 +43,12 @@ public class ExtraBall extends Powerup {
 	public boolean collision() {
 		b1 = new Ball(20, 200, 7);
 		return false;
+	}
+	
+	@Override
+	public Color getColor(){
+		color = Color.BLUE;
+		return color;
 	}
 
 }
