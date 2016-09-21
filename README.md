@@ -1,3 +1,4 @@
-# breakout
+Breakout game
 
-It is I
+Currently has all of the normal functionality
+In the process of working on powerups
